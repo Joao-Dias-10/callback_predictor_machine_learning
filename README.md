@@ -69,7 +69,7 @@ Automatizar a identificação de clientes com **alta probabilidade de retornar u
    ```bash
    git clone https://github.com/seu-usuario/callback_predictor_machine_learning.git
    cd callback_predictor_machine_learning
-````
+   ````
 
 2. Crie um ambiente virtual:
 
