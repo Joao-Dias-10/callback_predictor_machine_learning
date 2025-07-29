@@ -1,0 +1,11 @@
+# Python
+.venv
+.env
+**/__pycache__/
+**.pytest_cache
+
+# Logs
+*.log
+
+# VSCode
+.vscode/

@@ -1,11 +1,27 @@
-<<<<<<< HEAD
-# 🛠️ Projeto Modelo de Automação com Python
+# 🤖 callback_predictor_machine_learning
 
-Este repositório representa um **modelo de estrutura de pastas** para projetos Python focados em **automações simples**, integrando boas práticas de organização, modularidade e reutilização de código.
+Sistema preditivo baseado em Machine Learning para antecipar a possibilidade de rechamadas (callbacks) de clientes em um call center, com foco no intervalo de 72 horas após o atendimento inicial.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🎯 Objetivo
+
+Automatizar a identificação de clientes com **alta probabilidade de retornar uma ligação** ao call center, permitindo que a operação tome ações proativas (como contatos prévios ou priorização de casos críticos).
+
+---
+
+## 🧱 Arquitetura
+
+- 📦 **Machine Learning** com modelos supervisionados (Árvore de Decisão, Random Forest, etc.)
+- 🧪 **Testes automatizados** com `pytest`
+- 🐘 **Persistência em PostgreSQL**, via `SQLAlchemy ORM`
+- 📊 **Análise e estudo** em Jupyter Notebooks
+- 🔁 **Pipeline agendado** para rodar previsões 3x por dia
+- 📌 **Organização orientada a objetos (POO)**
+
+---
+
+## 📂 Estrutura de Diretórios
 
 ```
 
@@ -30,31 +46,36 @@ Este repositório representa um **modelo de estrutura de pastas** para projetos 
 ├── main.py           # Ponto de entrada do projeto
 ├── requirements.txt          
 
+
 ````
 
 ---
 
-## ⚙️ Pré-requisitos
+## 🛠️ Tecnologias Utilizadas
 
-- Python 3.8+
-- pip ou poetry
-- (Opcional) virtualenv para isolamento de ambiente
+- Python 3.10+
+- scikit-learn
+- pandas
+- SQLAlchemy
+- psycopg2 (PostgreSQL driver)
+- pytest
+- Jupyter
 
 ---
 
-## 🚀 Como usar
+## 🚀 Como Executar
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
-   ````
+   git clone https://github.com/seu-usuario/callback_predictor_machine_learning.git
+   cd callback_predictor_machine_learning
+````
 
 2. Crie um ambiente virtual:
 
    ```bash
    python -m venv .venv
-   source .venv/bin/activate  # Linux/macOS
+   source .venv/bin/activate  # Linux/Mac
    .venv\Scripts\activate     # Windows
    ```
 
@@ -64,13 +85,15 @@ Este repositório representa um **modelo de estrutura de pastas** para projetos 
    pip install -r requirements.txt
    ```
 
-4. Copie o arquivo `.env.example`:
+4. Configure o banco em `config.py` ou via `.env`.
+
+5. Rode testes:
 
    ```bash
-   cp .env.example .env
+   pytest
    ```
 
-5. Execute o script principal:
+6. Execute previsões (exemplo):
 
    ```bash
    python main.py
@@ -78,22 +101,3 @@ Este repositório representa um **modelo de estrutura de pastas** para projetos 
 
 ---
 
-## 🧪 Testes
-
-Para rodar os testes:
-
-```bash
-pytest tests/
-```
-
----
-
-## 📌 Observações
-
-Este projeto é um **modelo base**, podendo ser adaptado conforme o tipo de automação (ex: APIs, banco de dados, Spark, etc.).
-
----
-=======
-# callback_predictor_machine_learning
->>>>>>> 76c6e2e (first commit)
-# callback_predictor_machine_learning
