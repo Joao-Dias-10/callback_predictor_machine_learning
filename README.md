@@ -40,6 +40,7 @@ Automatizar a identificação de clientes com **alta probabilidade de retornar u
 │   │   ├── models.py
 │   │   └── queries.py
 │   ├── preprocessing/ # Pré-processamento e transformação de dados
+    ├── ml/           # modelos, treinamento, previsão
 │   └── utils/        # Funções utilitárias
 ├── tests/            # Testes unitários e de integração
 ├── .gitignore        # Padrões de arquivos ignorados pelo Git

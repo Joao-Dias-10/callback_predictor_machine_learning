@@ -3,4 +3,7 @@ import os
 
 load_dotenv(rf'config\.env')
 
-TESTE = os.getenv('TESTE')  
+DATABASE_URL = os.getenv('DATABASE_URL')  
+PATH_RAW = os.getenv('PATH_RAW')  
+PATH_PROCESSED = os.getenv('PATH_PROCESSED')  
+ 
