@@ -10,18 +10,26 @@ class LoggerConfig:
         self.logger_name = logger_name   
         self.logger = logging.getLogger(self.logger_name)
 
-    def configure(self) -> logging.Logger:
+    def configure(self) -> logging.Logger: 
         os.makedirs(self.log_path, exist_ok=True)
         self.logger.setLevel(self.log_level)
+
+        # Remove todos os handlers existentes para evitar duplicidade
         if self.logger.hasHandlers():
-            return self.logger
+            self.logger.handlers.clear()
+
+        # Agora sim adiciona sempre os handlers
         log_format = '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
         formatter = logging.Formatter(log_format)
+
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(formatter)
+
         log_file_path = os.path.join(self.log_path, self.log_filename)
         file_handler = logging.FileHandler(log_file_path, mode='a', encoding='utf-8')
         file_handler.setFormatter(formatter)
+
         self.logger.addHandler(stream_handler)
         self.logger.addHandler(file_handler)
+
         return self.logger

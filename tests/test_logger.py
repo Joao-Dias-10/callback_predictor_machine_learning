@@ -1,23 +1,32 @@
-import logging
-from src.utils.logger import LoggerConfig
 import os
+import logging
+import pytest
+from src.utils.logger import LoggerConfig
 
-def test_logger_cria_arquivo(tmp_path):
-    logger_path = tmp_path / "logs"
+@pytest.fixture
+def temp_log_dir(tmp_path):
+    return tmp_path / "logs"
+
+def test_logger_creation(temp_log_dir):
+    # Configura o logger
     logger_config = LoggerConfig(
-        log_path=str(logger_path),
-        log_filename="teste.log",
-        log_level="INFO",
-        logger_name="test_logger"
+        log_path=str(temp_log_dir),
+        log_filename='teste_execucao.log',
+        log_level='INFO',
+        logger_name='test_logger'
     )
-    logger = logger_config.configurar()
+    logger = logger_config.configure()
 
-    logger.info("Mensagem de teste")
-    log_file = logger_path / "teste.log"
+    # Valida se o logger foi configurado corretamente
+    assert isinstance(logger, logging.Logger)
+    assert logger.name == 'test_logger'
+    assert logger.level == logging.INFO
 
-    logger.handlers[0].flush()  # força flush do log
-
+    # Testa se log é realmente escrito no arquivo
+    logger.info("Teste de log de informação")
+    log_file = temp_log_dir / 'teste_execucao.log'
     assert log_file.exists()
+
     with open(log_file, "r", encoding="utf-8") as f:
-        conteudo = f.read()
-        assert "Mensagem de teste" in conteudo
+        content = f.read()
+        assert "Teste de log de informação" in content
