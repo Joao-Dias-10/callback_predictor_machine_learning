@@ -15,7 +15,7 @@ class RechamadaPredictor:
         self.target = target
         self.model = RandomForestClassifier(n_estimators=100, random_state=42)
 
-    def treinar(self, df_historico: pd.DataFrame) -> float:
+    def train(self, df_historico: pd.DataFrame) -> float:
         """
         Treina o modelo usando os dados históricos.
 
@@ -43,7 +43,7 @@ class RechamadaPredictor:
 
         return acc * 100  # em percentual
 
-    def prever(self, df_dia_atual: pd.DataFrame) -> pd.DataFrame:
+    def predict(self, df_dia_atual: pd.DataFrame) -> pd.DataFrame:
         """
         Aplica o modelo ao DataFrame do dia atual e retorna apenas os casos
         previstos como rechamada.

@@ -10,7 +10,7 @@ class LoggerConfig:
         self.logger_name = logger_name   
         self.logger = logging.getLogger(self.logger_name)
 
-    def configurar(self) -> logging.Logger:
+    def configure(self) -> logging.Logger:
         os.makedirs(self.log_path, exist_ok=True)
         self.logger.setLevel(self.log_level)
         if self.logger.hasHandlers():
