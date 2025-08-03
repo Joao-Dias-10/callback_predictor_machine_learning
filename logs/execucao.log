@@ -1,20 +1,14 @@
-2025-08-02 17:36:14,286 - INFO - app - Processo iniciado. Criar o banco de dados e as tabelas caso não existam.
-2025-08-02 17:36:14,382 - INFO - app - ORM concluído. Obter a sessão diretamente do gerador.
-2025-08-02 17:36:14,382 - INFO - app - Consultar todas as chamadas.
-2025-08-02 17:36:14,652 - INFO - app - Chamadas consultadas. Gerando o CSV.
-2025-08-02 17:36:14,768 - INFO - app - CSV gerado com sucesso. Carregando o CSV para processamento.
-2025-08-02 17:36:14,772 - INFO - app - Inserindo os dados no banco Postgres.
-2025-08-02 17:36:14,840 - INFO - app - Dados inseridos no banco Postgres com sucesso.
-2025-08-02 17:36:14,848 - INFO - app - Sessão fechada com sucesso.
-
-
-2025-08-02 17:41:04,818 - INFO - app - Processo iniciado. Criar o banco de dados e as tabelas caso não existam.
-2025-08-02 17:41:05,097 - INFO - app - ORM concluído. Obter a sessão diretamente do gerador.
-2025-08-02 17:41:05,098 - INFO - app - Consultar todas as chamadas.
-2025-08-02 17:41:05,357 - INFO - app - Chamadas consultadas. Gerando o CSV.
-2025-08-02 17:41:05,484 - INFO - app - CSV gerado com sucesso. Gerando o df para processamento.
-2025-08-02 17:41:05,489 - INFO - app - O df gerado com sucesso. Inserindo os dados no banco Postgres.
-2025-08-02 17:41:05,568 - INFO - app - Dados inseridos no banco Postgres com sucesso.
-2025-08-02 17:41:05,573 - INFO - app - Sessão fechada com sucesso.
+2025-08-02 23:39:57,449 - INFO - app - Processo iniciado. Criar o banco de dados e as tabelas caso não existam.
+2025-08-02 23:39:57,523 - INFO - app - ORM concluído. Obter a sessão diretamente do gerador.
+2025-08-02 23:39:57,524 - INFO - app - Consultar todas as chamadas.
+2025-08-02 23:39:57,764 - INFO - app - Chamadas consultadas. Gerando o CSV.
+2025-08-02 23:39:57,871 - INFO - app - O CSV gerado. Gerando dia... usa ontem se for antes das 2h, senão usa a data de hoje.
+2025-08-02 23:39:57,873 - INFO - app - Dia 2025-07-31 gerado. Carregando df da consulta e tratando dados.
+2025-08-02 23:39:57,960 - INFO - app - Configurado. Instanciando predictor e treinando para obter acurácia.
+2025-08-02 23:39:59,328 - INFO - app - Acurácia do modelo: 99.80%. Prevendo rechamadas do dia atual
+2025-08-02 23:39:59,339 - INFO - app - Previsão finalizada. Gerando csv da mesma para log.
+2025-08-02 23:39:59,341 - INFO - app - O csv gerado com sucesso. Inserindo o df de previsão no banco Postgres.
+2025-08-02 23:39:59,403 - INFO - app - Dados inseridos no banco Postgres com sucesso.
+2025-08-02 23:39:59,407 - INFO - app - Sessão fechada com sucesso.
 
 

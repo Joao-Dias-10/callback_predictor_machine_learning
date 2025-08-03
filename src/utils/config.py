@@ -5,5 +5,8 @@ load_dotenv(rf'config\.env')
 
 DATABASE_URL = os.getenv('DATABASE_URL')  
 PATH_RAW = os.getenv('PATH_RAW')  
-PATH_PROCESSED = os.getenv('PATH_PROCESSED')  
+PATH_PROCESSED = os.getenv('PATH_PROCESSED') 
+
+FEATURES = os.getenv("FEATURES").split(",")
+TARGET = os.getenv('TARGET') 
  

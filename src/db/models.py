@@ -30,5 +30,5 @@ class CallbackScore72h(Base):
     __tablename__ = 'callback_score_72h'
     
     id = Column(Integer, primary_key=True, index=True)
-    cliente_id = Column(String(50))
-    data_atendimento = Column(DateTime)
+    num_cliente = Column(String(50))
+    data = Column(Date)

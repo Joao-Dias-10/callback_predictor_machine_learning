@@ -1,14 +1,22 @@
 from src.utils.logger import LoggerConfig
+from src.utils.config import DATABASE_URL, PATH_RAW, PATH_PROCESSED, FEATURES, TARGET
+from src.utils.file_orchestration import FileOrchestration
+
 from src.db.connection import DatabaseConnection
 from src.db.queries import ChamadaDB
-from src.utils.file_orchestration import FileOrchestration
-from src.utils.config import DATABASE_URL, PATH_RAW, PATH_PROCESSED
 from src.db.models import Base
+from src.ml.rechamada_predictor import RechamadaPredictor
+
 from sqlalchemy import create_engine
+
+from datetime import datetime,  timedelta
+
+import logging
 
 def run():
     try:
         # Configuração do Logger
+        logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING)
         log_config = LoggerConfig(log_path='./logs', log_filename='execucao.log', log_level='DEBUG', logger_name='app')
         logger = log_config.configurar()
         
@@ -26,15 +34,29 @@ def run():
             chamadas = chamada_db.consultar_todas()  
 
             logger.info("Chamadas consultadas. Gerando o CSV.") 
-            gerador_csv = FileOrchestration(PATH_RAW, 'historico_rechamada.csv') 
-            gerador_csv.gerar_csv(chamadas) 
+            csv_orchestration = FileOrchestration(PATH_RAW, 'historico_rechamada.csv') 
+            csv_orchestration.gerar_csv(chamadas) 
+
+            logger.info("O CSV gerado. Gerando dia... usa ontem se for antes das 2h, senão usa a data de hoje.")
+            dia_de_estudo = (datetime.now() - timedelta(days=1)).date() if datetime.now().hour < 2 else datetime.now().date()
+
+            logger.info(f"Dia {dia_de_estudo} gerado. Carregando df da consulta e tratando dados.") 
+            df_chamdas = csv_orchestration.carregar_csv()
+            df_dia_atual, df_historico = csv_orchestration.preparar_dados_para_modelo(dia_de_estudo, df_chamdas)
+            
+            logger.info("Configurado. Instanciando predictor e treinando para obter acurácia.") 
+            predictor = RechamadaPredictor(features=FEATURES, target=TARGET)
+            acuracia = predictor.treinar(df_historico)
+
+            logger.info(f"Acurácia do modelo: {acuracia:.2f}%. Prevendo rechamadas do dia atual") 
+            df_rechamadas_previstas = predictor.prever(df_dia_atual)
+
+            logger.info("Previsão finalizada. Gerando csv da mesma para log.")
+            csv_orchestration = FileOrchestration(PATH_PROCESSED, 'rechamadas_previstas.csv')
+            csv_orchestration.gerar_csv(df_rechamadas_previstas)
         
-            logger.info("CSV gerado com sucesso. Gerando o df para processamento.")
-            gerador_csv = FileOrchestration(PATH_PROCESSED, 'rechamadas_previstas.csv')
-            df = gerador_csv.carregar_csv()
-        
-            logger.info("O df gerado com sucesso. Inserindo os dados no banco Postgres.")
-            chamada_db.inserir_callback_score(df)  
+            logger.info("O csv gerado com sucesso. Inserindo o df de previsão no banco Postgres.")
+            chamada_db.inserir_callback_score(df_rechamadas_previstas, dia_de_estudo)  
 
             logger.info("Dados inseridos no banco Postgres com sucesso.")
         

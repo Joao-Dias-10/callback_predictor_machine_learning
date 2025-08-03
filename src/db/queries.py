@@ -16,12 +16,12 @@ class ChamadaDB:
             .all()
         )
 
-    def inserir_callback_score(self, df: pd.DataFrame):
+    def inserir_callback_score(self, df: pd.DataFrame, dia_de_estudo:date):
         """Insere os dados do DataFrame na tabela callback_score_72h"""
         for index, row in df.iterrows():
             nova_entrada = CallbackScore72h(
-                cliente_id=row['cliente_id'],
-                data_atendimento=row['data_atendimento']
+                num_cliente=str(row['num_cliente']),
+                data=dia_de_estudo
             )
             self.db.add(nova_entrada)
         self.db.commit()
