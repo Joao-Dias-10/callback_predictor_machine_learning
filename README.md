@@ -29,6 +29,7 @@ Automatizar a identificação de clientes com **alta probabilidade de retornar u
 ├── data/             # Dados brutos e processados
 │   ├── raw/
 │   └── processed/
+├── docs/             # Apresenta rapidamente o sistema para outro dev
 ├── logs/             # Logs de execução
 ├── notebooks/        # Cadernos Jupyter para testes manuais e EDA
 ├── src/              # Código-fonte principal
