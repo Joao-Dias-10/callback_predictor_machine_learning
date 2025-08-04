@@ -5,14 +5,15 @@ from src.utils.file_orchestration import FileOrchestration
 from src.db.connection import DatabaseConnection
 from src.db.queries import ChamadaDB
 from src.db.models import Base
-from src.ml.rechamada_predictor import RechamadaPredictor
-from src.preprocessing.preprocessing_pipeline import PreprocessingPipeline
 
+from src.ml.rechamada_predictor import RechamadaPredictor
+
+from src.preprocessing.preprocessing_pipeline import PreprocessingPipeline
 
 from sqlalchemy import create_engine
 
 from datetime import datetime,  timedelta
-# TESTES - DOCUMENTO - REVISÃO - TEXTO - POSTAR
+
 def run():
     try:
         # Configuração do Logger
